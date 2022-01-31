@@ -1,3 +1,4 @@
+#!/usr/bin/env bb
 (ns day12
   (:require
     [clojure.java.io :as io]
