@@ -72,17 +72,15 @@
 (defn find-basin
   [mx i j]
   (let [low-points (filter
-                     (fn [[k l]]
-                       (and
-                         (< (aget mx k l) 9)
-                         (< (aget mx i j) (aget mx k l))))
-                     (adjacents mx i j))
+                    (fn [[k l]]
+                      (< (aget mx i j) (aget mx k l) 9))
+                    (adjacents mx i j))
         basin (concat
-                low-points
-                (mapcat
-                  (fn [[k l]]
-                    (find-basin mx k l))
-                  low-points))]
+               low-points
+               (mapcat
+                (fn [[k l]]
+                  (find-basin mx k l))
+                low-points))]
     (into #{} basin)))
 
 
